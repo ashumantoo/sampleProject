@@ -10,6 +10,7 @@ import { ChatList } from './ChatList';
 import { Chat } from './Chat';
 import { Profile } from './Profile';
 import { Explore } from './Explore';
+import { Bookmarks } from './Bookmarks';
 import { color } from 'react-native-reanimated';
 
 const Tab = createBottomTabNavigator();
@@ -18,6 +19,7 @@ const HomeStack = createStackNavigator();
 const ChatListStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const LoginStack = createStackNavigator();
+const BookmarksStack = createStackNavigator();
 
 export const MainTabScreen = () => {
     return (
@@ -50,8 +52,8 @@ export const MainTabScreen = () => {
                 }}
             />
             <Tab.Screen
-                name="Chat"
-                component={ChatStackScreen}
+                name="ChatList"
+                component={ChatListStackScreen}
                 options={{
                     tabBarLabel: 'Chat',
                     tabBarIcon: ({ color, size }) => (
@@ -110,6 +112,7 @@ const ChatListStackScreen = ({ navigation }) => (
         }
     }}>
         <ChatListStack.Screen name="ChatList" component={ChatList} options={{ headerLeft: () => headerMenuIcon(navigation) }} />
+        <ChatListStack.Screen name="chat" component={Chat} options={{ title: "Chats" }} />
     </ChatListStack.Navigator>
 )
 
@@ -167,4 +170,18 @@ const ProfileStackScreen = ({ navigation }) => (
     }}>
         <LoginStack.Screen name="Profile" component={Profile} options={{ headerLeft: () => headerMenuIcon(navigation) }} />
     </LoginStack.Navigator>
+)
+
+const BookmarksStackScreen = ({ navigation }) => (
+    <BookmarksStack.Navigator screenOptions={{
+        headerStyle: {
+            backgroundColor: "#009387"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+            fontWeight: "bold"
+        }
+    }}>
+        <BookmarksStack.Screen name="Bookmarks" component={Bookmarks} options={{ headerLeft: () => headerMenuIcon(navigation) }} />
+    </BookmarksStack.Navigator>
 )

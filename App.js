@@ -12,17 +12,20 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { MainTabScreen } from './src/componets/screens/MainTabScreen';
 import { DrawerContent } from './src/componets/screens/DrawerContent';
 
+import { Bookmarks } from './src/componets/screens/Bookmarks';
+import { Settings } from './src/componets/screens/Settings';
+import { Support } from './src/componets/screens/Support';
+
 const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home" drawerContent={props => <DrawerContent {...props} /> }>
-        <Drawer.Screen name="Home" component={MainTabScreen} />
-        {/* <Drawer.Screen name="Home" component={HomeStackScreen} /> */}
-        {/* <Drawer.Screen name="ChatList" component={ChatListStackScreen} />
-        <Drawer.Screen name="Chat" component={ChatStackScreen} />
-        <Drawer.Screen name="Login" component={LoginStackScreen} /> */}
+      <Drawer.Navigator initialRouteName="HomeDrawer" drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+        <Drawer.Screen name="Bookmarks" component={Bookmarks} />
+        <Drawer.Screen name="Settings" component={Settings} />
+        <Drawer.Screen name="Support" component={Support} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

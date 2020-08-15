@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch } from 'react-native-paper';
 import { color } from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
 export const DrawerContent = (props) => {
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+    const toggleTheme = () => {
+        setIsDarkTheme(!isDarkTheme);
+    }
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView {...props}>
@@ -33,6 +41,78 @@ export const DrawerContent = (props) => {
                             </View>
                         </View>
                     </View>
+                    <Drawer.Section style={styles.drawerSection}>
+                        <DrawerItem icon={({ color, size }) => (
+                            <Icon
+                                name="home"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                            label="Home"
+                            onPress={() => { props.navigation.navigate("HomeDrawer") }}
+                        />
+                        <DrawerItem icon={({ color, size }) => (
+                            <Entypo
+                                name="user"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                            label="Profile"
+                            onPress={() => { props.navigation.navigate("Profile") }}
+                        />
+                        <DrawerItem icon={({ color, size }) => (
+                            <MaterialIcon
+                                name="chat-bubble"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                            label="Chat"
+                            onPress={() => { props.navigation.navigate("ChatList") }}
+                        />
+                        <DrawerItem icon={({ color, size }) => (
+                            <Entypo
+                                name="bookmarks"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                            label="Bookmarks"
+                            onPress={() => { props.navigation.navigate("Bookmarks") }}
+                        />
+                        <DrawerItem icon={({ color, size }) => (
+                            <MaterialIcon
+                                name="settings"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                            label="Settings"
+                            onPress={() => { props.navigation.navigate("Settings") }}
+                        />
+                        <DrawerItem icon={({ color, size }) => (
+                            <MaterialIcon
+                                name="person-pin"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                            label="Support"
+                            onPress={() => { props.navigation.navigate("Support") }}
+                        />
+                    </Drawer.Section>
+                    <Drawer.Section>
+                        <TouchableRipple onPress={() => toggleTheme()}>
+                            <View style={styles.preference}>
+                                <Text>Dark Theme</Text>
+                                <View pointerEvents="none">
+                                    <Switch value={isDarkTheme} />
+                                </View>
+                            </View>
+                        </TouchableRipple>
+                    </Drawer.Section>
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>

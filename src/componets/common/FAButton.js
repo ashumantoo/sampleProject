@@ -5,7 +5,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 export const FAButton = (props) => {
     return (
         <View style={[styles.fabContainder, props.style]}>
-            <TouchableWithoutFeedback onPress={props.onClick}>
+            <TouchableWithoutFeedback onPress={props.onPress}>
                 <Animated.View style={[styles.fabButton, styles.fabButtonMenu]}>
                     <AntDesign name="plus" size={24} color="#fff" />
                 </Animated.View>

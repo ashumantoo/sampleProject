@@ -80,7 +80,7 @@ export const DrawerContent = (props) => {
                             />
                         )}
                             label="Bookmarks"
-                            onPress={() => { props.navigation.navigate("Bookmarks") }}
+                            onPress={() => { props.navigation.navigate("BookmarkStack") }}
                         />
                         <DrawerItem icon={({ color, size }) => (
                             <MaterialIcon

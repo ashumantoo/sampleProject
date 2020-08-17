@@ -16,7 +16,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
+import { AuthContext } from '../context/context';
+
 export const SignInScreen = (props) => {
+
+    const { signIn } = React.useContext(AuthContext);
+
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -118,12 +123,17 @@ export const SignInScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.button}>
-                    <LinearGradient
-                        colors={["#08d4c4", "#01ab9d"]}
+                    <TouchableOpacity
                         style={styles.signIn}
+                        onPress={() => { signIn() }}
                     >
-                        <Text style={[styles.textSign, { color: "#fff" }]}>Sign In</Text>
-                    </LinearGradient>
+                        <LinearGradient
+                            colors={["#08d4c4", "#01ab9d"]}
+                            style={styles.signIn}
+                        >
+                            <Text style={[styles.textSign, { color: "#fff" }]}>Sign In</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => props.navigation.navigate("SignUpScreen")}
                         style={[styles.signIn, {

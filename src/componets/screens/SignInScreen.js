@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
 
 import { AuthContext } from '../context/context';
 
@@ -23,32 +24,31 @@ export const SignInScreen = (props) => {
     const { signIn } = React.useContext(AuthContext);
 
     const [data, setData] = useState({
-        email: "",
+        username: "",
         password: "",
         check_textInputChange: false,
         secureTextEntry: true
     });
 
-    const textInputChange = (val) => {
-        if (val.length !== 0) {
+    const onUsernameChange = (value) => {
+        if (value.length !== 0) {
             setData({
                 ...data,
-                email: val,
+                username: value,
                 check_textInputChange: true
             })
         } else {
             setData({
                 ...data,
-                email: val,
+                username: value,
                 check_textInputChange: false
             })
         }
     }
-
-    const passwordInputChange = (val) => {
+    const onPasswordInputChange = (value) => {
         setData({
             ...data,
-            password: val
+            password: value
         })
     }
 
@@ -58,6 +58,11 @@ export const SignInScreen = (props) => {
             secureTextEntry: !data.secureTextEntry
         })
     }
+
+    const handleLogin = (username, password) => {
+        signIn(username, password);
+    };
+
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor='#009387' barStyle="light-content" />
@@ -68,7 +73,7 @@ export const SignInScreen = (props) => {
                 animation="fadeInUpBig"
                 style={styles.footer}
             >
-                <Text style={styles.text_footer}>Email</Text>
+                <Text style={styles.text_footer}>username</Text>
                 <View style={styles.action}>
                     <FontAwesome
                         name="user"
@@ -76,10 +81,10 @@ export const SignInScreen = (props) => {
                         color="#05375a"
                     />
                     <TextInput
-                        placeholder="Your Email"
+                        placeholder="Your Username"
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChange={(text) => textInputChange(text)}
+                        onChangeText={text => onUsernameChange(text)}
                     />
                     {data.check_textInputChange ?
                         <Animatable.View
@@ -103,10 +108,10 @@ export const SignInScreen = (props) => {
                     />
                     <TextInput
                         placeholder="Your Password"
-                        secureTextEntry={data.secureTextEntry ? true : false}
                         style={styles.textInput}
+                        secureTextEntry={data.secureTextEntry ? true : false}
                         autoCapitalize="none"
-                        onChange={(val) => passwordInputChange(val)}
+                        onChangeText={password => onPasswordInputChange(password)}
                     />
                     <TouchableOpacity onPress={updateSecureTextEntry}>
                         {data.secureTextEntry ?
@@ -125,7 +130,7 @@ export const SignInScreen = (props) => {
                 <View style={styles.button}>
                     <TouchableOpacity
                         style={styles.signIn}
-                        onPress={() => { signIn() }}
+                        onPress={() => handleLogin(data.username, data.password)}
                     >
                         <LinearGradient
                             colors={["#08d4c4", "#01ab9d"]}

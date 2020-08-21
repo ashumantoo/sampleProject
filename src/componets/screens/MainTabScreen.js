@@ -11,7 +11,7 @@ import { Chat } from './Chat';
 import { Profile } from './Profile';
 import { Explore } from './Explore';
 import { Bookmarks } from './Bookmarks';
-import { color } from 'react-native-reanimated';
+import { NewContact } from './new.contact';
 
 const Tab = createBottomTabNavigator();
 
@@ -98,6 +98,7 @@ const HomeStackScreen = ({ navigation }) => (
         }
     }}>
         <HomeStack.Screen name="Home" component={Home} options={{ headerLeft: () => headerMenuIcon(navigation) }} />
+        <HomeStack.Screen name="New Contact" component={NewContact} />
     </HomeStack.Navigator>
 )
 

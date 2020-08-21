@@ -7,7 +7,15 @@ export const Home = (props) => {
         <View style={styles.container}>
             <Text style={styles.headerText}>React Native Navigation</Text>
             <Text style={styles.headerText}>Home Screen</Text>
-            <Button title="next" type="clear" onPress={()=>props.navigation.navigate("ChatList")}/>
+            <Button title="next" type="clear" onPress={() => props.navigation.navigate("ChatList")} />
+            <View>
+                <Button
+                    buttonStyle={styles.contactButton}
+                    title="Add New Contact"
+                    type="solid"
+                    onPress={() => props.navigation.navigate("New Contact")}
+                />
+            </View>
         </View>
     )
 }
@@ -20,5 +28,9 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 22
+    },
+    contactButton: {
+        padding:10,
+        marginTop:10
     }
 });

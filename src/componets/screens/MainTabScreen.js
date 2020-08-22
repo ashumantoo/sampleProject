@@ -13,6 +13,7 @@ import { Explore } from './Explore';
 import { Bookmarks } from './Bookmarks';
 import { NewContact } from './new.contact';
 import { FlexExample } from './flex.example';
+import { Goals } from './goal/goals';
 
 const Tab = createBottomTabNavigator();
 
@@ -101,6 +102,7 @@ const HomeStackScreen = ({ navigation }) => (
         <HomeStack.Screen name="Home" component={Home} options={{ headerLeft: () => headerMenuIcon(navigation) }} />
         <HomeStack.Screen name="New Contact" component={NewContact} />
         <HomeStack.Screen name="FlexBox" component={FlexExample} />
+        <HomeStack.Screen name="Goals" component={Goals} />
     </HomeStack.Navigator>
 )
 

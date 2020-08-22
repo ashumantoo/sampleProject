@@ -15,6 +15,12 @@ export const Home = (props) => {
                     type="solid"
                     onPress={() => props.navigation.navigate("New Contact")}
                 />
+                <Button
+                    buttonStyle={styles.contactButton}
+                    title="FlexBox Example"
+                    type="solid"
+                    onPress={() => props.navigation.navigate("FlexBox")}
+                />
             </View>
         </View>
     )

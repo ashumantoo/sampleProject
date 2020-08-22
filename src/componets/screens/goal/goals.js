@@ -23,6 +23,12 @@ export const Goals = () => {
         }]);
     };
 
+    const onDeleteHandler = (goalId) => {
+        setGoals(currentGoals => {
+            return currentGoals.filter((goal) => goal.id !== goalId)
+        });
+    }
+
     return (
         <View>
             <View style={styles.goalContainer}>
@@ -62,7 +68,11 @@ export const Goals = () => {
             <FlatList
                 keyExtractor={(item) => item.id}
                 data={goals}
-                renderItem={itemData => <GoalListItem title={itemData.item.value} />}
+                renderItem={itemData => <GoalListItem
+                    id={itemData.item.id}
+                    title={itemData.item.value}
+                    onDelete={onDeleteHandler}
+                />}
             // renderItem={itemData => (
             //     <View style={styles.goalList}>
             //         <Text> {itemData.item.value} </Text>
